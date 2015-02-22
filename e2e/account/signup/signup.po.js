@@ -5,15 +5,15 @@
 
 'use strict';
 
-var SignupPage = function() {
+				var SignupPage = function() {
   this.form = element(by.css('.form'));
-  this.form.name = this.form.element(by.model('user.name'));
+this.form.name = this.form.element(by.model('user.name'));
   this.form.email = this.form.element(by.model('user.email'));
   this.form.password = this.form.element(by.model('user.password'));
   this.form.submit = this.form.element(by.css('.btn-register'));
 
   this.signup = function(data) {
-    for (var prop in data) {
+       for (var prop in data) {
       var formElem = this.form[prop];
       if (data.hasOwnProperty(prop) && formElem && typeof formElem.sendKeys === 'function') {
         formElem.sendKeys(data[prop]);

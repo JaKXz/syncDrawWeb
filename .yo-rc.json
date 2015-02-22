@@ -1,4 +1,4 @@
-{
+      {
   "generator-angular-fullstack": {
     "insertRoutes": true,
     "registerRoutesFile": "server/routes.js",
@@ -10,8 +10,8 @@
     "socketsNeedle": "// Insert sockets below",
     "filters": {
       "coffee": true,
-      "jade": true,
-      "sass": true,
+"jade": true,
+ "sass": true,
       "uirouter": true,
       "bootstrap": true,
       "uibootstrap": true,
@@ -30,13 +30,14 @@
   "generator-ng-component": {
     "routeDirectory": "client/app/",
     "directiveDirectory": "client/app/",
-    "filterDirectory": "client/app/",
+    "directiveDirectory": "client/app/",
+   "filterDirectory": "client/app/",
     "serviceDirectory": "client/app/",
     "basePath": "client",
     "moduleName": "",
     "filters": [
       "uirouter",
-      "jasmine"
+              "jasmine"
     ],
     "extensions": [
       "coffee",

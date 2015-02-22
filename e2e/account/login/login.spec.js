@@ -1,6 +1,5 @@
 'use strict';
-
-var config = protractor.getInstance().params;
+        var config = protractor.getInstance().params;
 var UserModel = require(config.serverConfig.root + '/server/api/user/user.model');
 
 describe('Login View', function() {
@@ -9,7 +8,7 @@ describe('Login View', function() {
   var loadPage = function() {
     browser.get('/login');
     page = require('./login.po');
-  };
+          };
 
   var testUser = {
     name: 'Test User',
@@ -18,7 +17,7 @@ describe('Login View', function() {
   };
 
   beforeEach(function(done) {
-    UserModel.removeAsync()
+   //      UserModel.removeAsync()
       .then(function() {
         return UserModel.createAsync(testUser);
       })
@@ -31,7 +30,7 @@ describe('Login View', function() {
     expect(page.form.email.getAttribute('name')).toBe('email');
     expect(page.form.password.getAttribute('type')).toBe('password');
     expect(page.form.password.getAttribute('name')).toBe('password');
-    expect(page.form.submit.getAttribute('type')).toBe('submit');
+     expect(page.form.submit.getAttribute('type')).toBe('submit');
     expect(page.form.submit.getText()).toBe('Login');
   });
 

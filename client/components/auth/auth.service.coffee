@@ -12,7 +12,7 @@ angular.module 'syncDrawWebApp'
   @return {Promise}
   ###
   login: (user, callback) ->
-    $http.post '/auth/local',
+    #     $http.post '/auth/local',
       email: user.email
       password: user.password
 
@@ -25,7 +25,7 @@ angular.module 'syncDrawWebApp'
     , (err) =>
       @logout()
       callback? err.data
-      $q.reject err.data
+  $q.reject err.data
 
 
   ###
@@ -41,7 +41,7 @@ angular.module 'syncDrawWebApp'
   Create a new user
 
   @param  {Object}   user     - user info
-  @param  {Function} callback - optional, function(error, user)
+  #     @param  {Function} callback - optional, function(error, user)
   @return {Promise}
   ###
   createUser: (user, callback) ->
@@ -51,7 +51,7 @@ angular.module 'syncDrawWebApp'
         currentUser = User.get()
         callback? null, user
 
-      , (err) =>
+					, (err) =>
         @logout()
         callback? err
 
@@ -62,7 +62,7 @@ angular.module 'syncDrawWebApp'
   Change password
 
   @param  {String}   oldPassword
-  @param  {String}   newPassword
+     #     @param  {String}   newPassword
   @param  {Function} callback    - optional, function(error, user)
   @return {Promise}
   ###
@@ -80,8 +80,7 @@ angular.module 'syncDrawWebApp'
       callback? err
 
     .$promise
-
-
+	
   ###
   Gets all available info on a user
     (synchronous|asynchronous)
@@ -104,17 +103,18 @@ angular.module 'syncDrawWebApp'
       {}
 
 
-  ###
+            ###
   Check if a user is logged in
     (synchronous|asynchronous)
 
-  @param  {Function|*} callback - optional, function(is)
+ @param  {Function|*} callback - optional, function(is)
   @return {Bool|Promise}
   ###
   isLoggedIn: (callback) ->
     return currentUser.hasOwnProperty("role")  if arguments.length is 0
 
-    @getCurrentUser null
+            @getCurrentUser null
+
 
     .then (user) ->
       is_ = user.hasOwnProperty("role")
