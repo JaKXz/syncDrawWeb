@@ -8,9 +8,8 @@ angular.module 'syncDrawWebApp'
 
   $http.get('/api/images')
     .success (images) ->
-      if images.length > 0
-        $rootScope.images = images
-        $rootScope.canvas = _.last $rootScope.images
+      $rootScope.images = images
+      $rootScope.canvas = _.last($rootScope.images).info
       socket.syncUpdates 'image', $rootScope.images
       return
 
@@ -32,10 +31,6 @@ angular.module 'syncDrawWebApp'
 
   $scope.$on '$destroy', ->
     socket.unsyncUpdates 'thing'
-    return
-
-  $scope.$on 'image:save', (image) ->
-    console.log image
     return
 
   return

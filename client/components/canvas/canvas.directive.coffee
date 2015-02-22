@@ -1,6 +1,6 @@
 angular.module 'syncDrawWebApp'
 .directive 'drawing', ($http, $rootScope, socket) ->
-  {
+  return {
     restrict: 'A'
     # requre: 'ngModel'
     link: (scope, element, attrs) ->
@@ -28,9 +28,6 @@ angular.module 'syncDrawWebApp'
         ctx.stroke()
         # ctx.closePath()
         return
-
-      getDataUrl = (canvas) ->
-        canvas.toDataUrl()
 
       element.bind 'mousedown', (event) ->
         if event.offsetX != undefined
@@ -63,16 +60,7 @@ angular.module 'syncDrawWebApp'
         # stop drawing
         drawing = false
         dataUrl = ctx.canvas.toDataURL()
-
-        $http.post('/api/images', info: dataUrl)
-          # .success () ->
-          #   $http.get('/api/images')
-          #     .success (images) ->
-          #       if images.length > 0
-          #         $rootScope.images = images
-          #         $rootScope.canvas = _.last $rootScope.images
-          #       socket.syncUpdates 'image', $rootScope.images
-
+        _.debounce $http.post('/api/images', info: dataUrl), 100
         return
 
       return

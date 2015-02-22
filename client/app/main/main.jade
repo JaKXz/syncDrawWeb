@@ -27,9 +27,11 @@ div(ng-include='"components/navbar/navbar.html"')
     .col-md-12.panel
       //- canvas#canvas(drawing)
       <canvas id='canvas' drawing></canvas>
-      pre
-        | {{canvas | json}}
-
+      //- pre
+        | {{images | orderBy:'_id':true | json}}
+      
+      img(ng-repeat="image in images | orderBy:'_id':true" ng-src="{{image.info}}")
+      
 footer.footer
   .container
     p
