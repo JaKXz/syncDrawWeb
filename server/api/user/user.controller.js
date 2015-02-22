@@ -1,22 +1,22 @@
 'use strict';
 
-var User = require('./user.model');
+			var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
-var jwt = require('jsonwebtoken');
+   var jwt = require('jsonwebtoken');
 
 var validationError = function(res, statusCode) {
   statusCode = statusCode || 422;
   return function(err) {
     res.json(statusCode, err);
-  };
+                };
 };
 
-function handleError(res, statusCode) {
+               function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {
     res.send(statusCode, err);
-  };
+         };
 }
 
 function respondWith(res, statusCode) {
@@ -38,7 +38,7 @@ exports.index = function(req, res) {
     .catch(handleError(res));
 };
 
-/**
+  //   /**
  * Creates a new user
  */
 exports.create = function(req, res, next) {
@@ -49,7 +49,7 @@ exports.create = function(req, res, next) {
     .spread(function(user) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
         expiresInMinutes: 60 * 5
-      });
+     });
       res.json({ token: token });
     })
     .catch(validationError(res));
@@ -86,14 +86,14 @@ exports.destroy = function(req, res) {
 /**
  * Change a users password
  */
-exports.changePassword = function(req, res, next) {
+			exports.changePassword = function(req, res, next) {
   var userId = req.user._id;
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
 
   User.findByIdAsync(userId)
-    .then(function(user) {
-      if (user.authenticate(oldPass)) {
+			.then(function(user) {
+        if (user.authenticate(oldPass)) {
         user.password = newPass;
         return user.saveAsync()
           .spread(respondWith(res, 200))
@@ -101,7 +101,7 @@ exports.changePassword = function(req, res, next) {
       } else {
         return res.send(403);
       }
-    });
+				});
 };
 
 /**
