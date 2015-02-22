@@ -11,10 +11,10 @@ angular.module 'syncDrawWebApp'
       lastX = undefined
       lastY = undefined
       # canvas reset
-      # ngModel.$modelValue = ctx
 
       reset = ->
         element[0].width = element[0].width
+        console.log(ctx, element[0])
         return
 
       draw = (lX, lY, cX, cY) ->
@@ -26,7 +26,6 @@ angular.module 'syncDrawWebApp'
         ctx.strokeStyle = '#4bf'
         # draw it
         ctx.stroke()
-        # ctx.closePath()
         return
 
       element.bind 'mousedown', (event) ->

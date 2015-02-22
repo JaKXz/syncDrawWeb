@@ -5,17 +5,20 @@ angular.module 'syncDrawWebApp'
   $scope.awesomeThings = []
   $rootScope.images = []
   $rootScope.canvas = {}
+  $scope.funky = '';
 
-  $http.get('/api/images')
-    .success (images) ->
-      $rootScope.images = images
-      $rootScope.canvas = _.last($rootScope.images).info
-      socket.syncUpdates 'image', $rootScope.images
-      return
+  $http.get('/api/images').success (images) ->
+    $rootScope.images = images
+    socket.syncUpdates 'image', $rootScope.images, updateCanvas
+    return
 
   $http.get('/api/things').success (awesomeThings) ->
     $scope.awesomeThings = awesomeThings
     socket.syncUpdates 'thing', $scope.awesomeThings
+    return
+
+  updateCanvas = (type, newImage) ->
+    $scope.funky = newImage.info
     return
 
   $scope.addThing = ->

@@ -29,8 +29,8 @@ div(ng-include='"components/navbar/navbar.html"')
       <canvas id='canvas' drawing></canvas>
       //- pre
         | {{images | orderBy:'_id':true | json}}
-      
-      img(ng-repeat="image in images | orderBy:'_id':true" ng-src="{{image.info}}")
+      img(ng-src="{{funky}}")
+      //- img(ng-repeat="image in images | orderBy:'_id':true" ng-src="{{image.info}}")
       
 footer.footer
   .container
