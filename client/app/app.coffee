@@ -37,4 +37,3 @@ angular.module 'syncDrawWebApp', [
   $rootScope.$on '$stateChangeStart', (event, next) ->
     Auth.isLoggedIn (loggedIn) ->
       $state.go 'login' if next.authenticate and not loggedIn
-
