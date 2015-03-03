@@ -1,15 +1,14 @@
 'use strict'
 
 angular.module 'syncDrawWebApp'
-.controller 'MainCtrl', ($scope, $http, socket, $rootScope) ->
+.controller 'MainCtrl', ($scope, $http, socket) ->
   $scope.awesomeThings = []
-  $rootScope.images = []
-  $rootScope.canvas = {}
-  $scope.funky = '';
+  $scope.images = []
+  $scope.funky = ''
 
   $http.get('/api/images').success (images) ->
-    $rootScope.images = images
-    socket.syncUpdates 'image', $rootScope.images, updateCanvas
+    $scope.images = images
+    socket.syncUpdates 'image', $scope.images, updateCanvas
     return
 
   $http.get('/api/things').success (awesomeThings) ->
