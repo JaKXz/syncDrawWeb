@@ -48,7 +48,7 @@ angular.module 'syncDrawWebApp'
     element.bind 'mouseup', (event) ->
       drawing = false
       dataUrl = ctx.canvas.toDataURL()
-      _.debounce $http.post('/api/images', info: dataUrl), 100
+      $http.post '/api/images', info: dataUrl
       return
 
     return
