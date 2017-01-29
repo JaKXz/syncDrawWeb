@@ -3,6 +3,8 @@ a fun way to collaborate on drawing things
 >> work in progress, see [releases](https://github.com/JaKXz/syncDrawWeb/releases)
 
 ## Getting started
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/JaKXz/syncDrawWeb.svg)](https://greenkeeper.io/)
 ```bash
 $ npm install # install all dependencies
 $ grunt serve
